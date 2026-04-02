@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meus Sonhos Realizados</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: radial-gradient(circle at top, #0f172a, #020617);
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    max-width: 600px;
+    margin: 30px auto;
+    background: #020617;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.7);
+}
+h1 {
+    text-align: center;
+}
+li {
+    list-style: none;
+    margin: 10px 0;
+    padding: 12px;
+    background: #1e293b;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: 0.3s;
+}
+li:hover {
+    transform: scale(1.02);
+}
+.checked {
+    text-decoration: line-through;
+    opacity: 0.5;
+}
+.progress {
+    margin: 15px 0;
+    text-align: center;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🚀 Meus Sonhos</h1>
+    <div class="progress" id="progresso"></div>
+    <ul id="lista"></ul>
+</div>
+
+<script>
+const sonhos = [
+"MAMAR MUITOS PINTOS",
+"ME TORNAR UM YOUTUBER",
+"GANHAR MINHA GUITARRA",
+"ME CASAR",
+"TER FILHOS",
+"TER CARRO",
+"TER MOTO",
+"TER MINHA MANSÃO",
+"MUDAR MINHA FAMÍLIA DE VIDA",
+"CONHECER MEUS ÍDOLOS",
+"CHEGAR A 100K DE INSCRITOS",
+"CHEGAR A 1M DE INSCRITOS",
+"SER RICO",
+"TER MEU SETUP GAMER",
+"APRENDER A LUTAR",
+"FAZER ACADEMIA",
+"APRENDER CALISTENIA",
+"NAMORAR",
+"TER UM JETSKI",
+"TER UM GALGO ARGENTINO OU AMERICANO",
+"VIAJAR PARA OUTROS PAÍSES",
+"TER UMA FAZENDA",
+"TER UMA LANCHA",
+"TER UMA KATANA DE VERDADE"
+];
+
+const lista = document.getElementById("lista");
+let dados = JSON.parse(localStorage.getItem("sonhos")) || [];
+
+function salvar() {
+    localStorage.setItem("sonhos", JSON.stringify(dados));
+    atualizarProgresso();
+}
+
+function atualizarProgresso() {
+    const feitos = dados.filter(v => v).length;
+    document.getElementById("progresso").innerText = 
+        `Progresso: ${feitos} / ${sonhos.length} sonhos realizados`;
+}
+
+sonhos.forEach((sonho, i) => {
+    const li = document.createElement("li");
+    const check = document.createElement("input");
+    check.type = "checkbox";
+    check.checked = dados[i] || false;
+
+    if(check.checked) li.classList.add("checked");
+
+    check.addEventListener("change", () => {
+        dados[i] = check.checked;
+        li.classList.toggle("checked");
+        salvar();
+    });
+
+    li.appendChild(check);
+    li.appendChild(document.createTextNode(sonho));
+    lista.appendChild(li);
+});
+
+atualizarProgresso();
+</script>
+
+</body>
+</html>
