@@ -1,0 +1,41 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background: radial-gradient(circle at top, #0f172a, #020617);
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    max-width: 600px;
+    margin: 30px auto;
+    background: #020617;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.7);
+}
+h1 {
+    text-align: center;
+}
+li {
+    list-style: none;
+    margin: 10px 0;
+    padding: 12px;
+    background: #1e293b;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: 0.3s;
+}
+li:hover {
+    transform: scale(1.02);
+}
+.checked {
+    text-decoration: line-through;
+    opacity: 0.5;
+}
+.progress {
+    margin: 15px 0;
+    text-align: center;
+}
